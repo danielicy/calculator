@@ -1,3 +1,4 @@
+using calculator.api.Calculator;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -25,7 +26,10 @@ namespace calculator.api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers()
+             .AddNewtonsoftJson();
+
+            services.AddScoped<ICalculate, CalculatorService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,16 +40,25 @@ namespace calculator.api
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
-
             app.UseRouting();
 
-            app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseCors(builder =>
+                         builder
+                             .AllowAnyHeader()
+                             .AllowAnyMethod()
+                             .AllowCredentials()
+                             .WithOrigins(Configuration.GetSection("AllowedOrigin").Value));
+
+
+            app.UseAuthentication();
+            app.UseHttpsRedirection();
+
+            //app.UseMvc( );
+
+
+
+            app.UseEndpoints(x => x.MapControllers());
         }
     }
 }
