@@ -1,10 +1,10 @@
  
     <div class="calculator">
-        <input type="text" placeholder="Hi Eitan!" value="{{total}}"><br/>
+        <input type="text"   value="{{expression}}{{total}}"><br/>
        <div class="buttons">
-        <calc-button class="c-button"
-        *ngFor="let num of numbers" 
-        [id]="num">{{num}}</calc-button>
+        <calc-button (click)="click(id)" class="c-button"
+        *ngFor="let id of buttons" 
+        [id]="id">{{id}}</calc-button>
        </div>        
     </div> 
  
