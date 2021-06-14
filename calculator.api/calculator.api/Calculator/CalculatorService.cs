@@ -3,14 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace calculator.api.Calculator
+namespace calculator.api
 {
     public class CalculatorService : ICalculate
     {
-        //const string precedence = '{ "*":2, "/":2, "+":1, "-":1 }';
-        public string Calculate(Expression expression)
-        {            
-             return Calculator.Calculate(expression);
+        
+        public string Calculate(string expression)
+        {
+            Calculator calculator = new Calculator();
+
+            string result = calculator.Solve(expression).ToString();
+            var splitted = result.Split('.');
+            if (splitted[1] == "000000")
+                return splitted[0];
+            else
+                return result;
+
+            
         }
     }
 

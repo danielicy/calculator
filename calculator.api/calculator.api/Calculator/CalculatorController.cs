@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace calculator.api.Calculator
+namespace calculator.api
 {
     [ApiController]
     [Route("[controller]")]
@@ -28,12 +28,10 @@ namespace calculator.api.Calculator
         }
 
         [HttpGet]        
-        public IActionResult Calculate(Expression expression)
+        public IActionResult Calculate(string expression)
         {
             try
             {
-
-
                 string result = _calculator.Calculate(expression);
                      
                  return Ok(result);
