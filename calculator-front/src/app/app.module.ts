@@ -3,16 +3,18 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { CalculatorComponent } from './calculator/calculator.component';
+import { LoginComponent } from './components/login/login.component';
+import { CalculatorComponent } from './components/calculator/calculator.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ButtonComponent } from './components/button/button.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    CalculatorComponent
+    CalculatorComponent,
+    ButtonComponent
   ],
   imports: [
     BrowserModule,

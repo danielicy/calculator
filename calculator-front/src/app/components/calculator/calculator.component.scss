@@ -1,0 +1,35 @@
+.calculator {
+  width: 20%;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  font-size: xx-large;
+  border-radius: 5%;
+  border: double black 2px;
+  padding: 0.5em;
+}
+.c-button {
+  margin: 0.1em;
+  border: double rgb(70, 14, 173) 1px;
+  display: flex;
+  justify-content: center;
+}
+
+.c-button:hover {
+  cursor: pointer;
+  background-color: rgb(207, 163, 248);
+  border: inset rgb(23, 3, 59) 1.5px;
+}
+
+.c-button:active {
+  background-color: rgb(65, 44, 138);
+  transform: scale(0.95);
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}

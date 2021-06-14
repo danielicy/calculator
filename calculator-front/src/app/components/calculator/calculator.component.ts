@@ -5,11 +5,12 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './calculator.component.html',
   styleUrls: ['./calculator.component.scss']
 })
-export class CalculatorComponent implements OnInit {
+export class CalculatorComponent {
+  numbers = ['7', '8', '9', 'x', '4', '5', '6', '-', '1', '2', '3', '+', '=', '0', '.', '/'];
+ total = '';
+  
 
-  constructor() { }
 
-  ngOnInit(): void {
-  }
+
 
 }

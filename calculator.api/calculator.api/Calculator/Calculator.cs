@@ -6,13 +6,13 @@ namespace calculator.api
 {   
         public class Calculator
         {
-            public double Solve(string equation)
+            public double Calculate(string expression)
             {
                 // Remove all spaces
-                equation = Regex.Replace(equation, @"\s+", "");
+                expression = Regex.Replace(expression, @"\s+", "");
 
                 Operation operation = new Operation();
-                operation.Parse(equation);
+                operation.Parse(expression);
 
                 double result = operation.Solve();
 
@@ -22,9 +22,9 @@ namespace calculator.api
 
         public class Operation
         {
-            public Operation LeftNumber { get; set; }
+            public Operation LeftOperator { get; set; }
             public string Operator { get; set; }
-            public Operation RightNumber { get; set; }
+            public Operation RightOperator { get; set; }
 
             private Regex additionSubtraction = new Regex("[+-]", RegexOptions.RightToLeft);
             private Regex multiplicationDivision = new Regex("[*/]", RegexOptions.RightToLeft);
@@ -41,11 +41,11 @@ namespace calculator.api
                 {
                     Operator = operatorLocation.Value;
 
-                    LeftNumber = new Operation();
-                    LeftNumber.Parse(equation.Substring(0, operatorLocation.Index));
+                    LeftOperator = new Operation();
+                    LeftOperator.Parse(equation.Substring(0, operatorLocation.Index));
 
-                    RightNumber = new Operation();
-                    RightNumber.Parse(equation.Substring(operatorLocation.Index + 1));
+                    RightOperator = new Operation();
+                    RightOperator.Parse(equation.Substring(operatorLocation.Index + 1));
                 }
                 else
                 {
@@ -63,16 +63,16 @@ namespace calculator.api
                     case "v":
                         break;
                     case "+":
-                        result = LeftNumber.Solve() + RightNumber.Solve();
+                        result = LeftOperator.Solve() + RightOperator.Solve();
                         break;
                     case "-":
-                        result = LeftNumber.Solve() - RightNumber.Solve();
+                        result = LeftOperator.Solve() - RightOperator.Solve();
                         break;
                     case "*":
-                        result = LeftNumber.Solve() * RightNumber.Solve();
+                        result = LeftOperator.Solve() * RightOperator.Solve();
                         break;
                     case "/":
-                        result = LeftNumber.Solve() / RightNumber.Solve();
+                        result = LeftOperator.Solve() / RightOperator.Solve();
                         break;
                     default:
                         throw new Exception("Call Parse first.");

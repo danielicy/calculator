@@ -12,7 +12,7 @@ namespace calculator.api
         {
             Calculator calculator = new Calculator();
 
-            string result = calculator.Solve(expression).ToString();
+            string result = calculator.Calculate(expression).ToString();
             var splitted = result.Split('.');
             if (splitted[1] == "000000")
                 return splitted[0];

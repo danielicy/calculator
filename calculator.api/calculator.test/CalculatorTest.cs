@@ -15,10 +15,10 @@ namespace calculator.test
         [Test]
         public void CalculationOrder()
         {
-            //1+8+7*4/2-5*2.5 = 9 + 14 + 12.5
+            //1+8+7*4/2+5*2.5 = 9 + 14 + 12.5
 
             Calculator _calc = new Calculator();
-            var result = _calc.Solve("1+2+3*2.9/4.6+12+2");
+            var result = _calc.Calculate("1+2+3*2.9/4.6+12+2");
             Assert.AreEqual("35.5", result);
         }
         [Test]
@@ -27,7 +27,7 @@ namespace calculator.test
              
             //1+2+3*2.9/4.6+12+2 = 3 + 1.891 + 14 
             Calculator _calc = new Calculator();
-            var result = _calc.Solve("1+2+3*2.9/4.6+12+2 ");
+            var result = _calc.Calculate("1+2+3*2.9/4.6+12+2 ");
            var parsedResulr = string.Format("{0:N6}", result);
             Assert.AreEqual("18.891304", parsedResulr);
         }
@@ -37,7 +37,7 @@ namespace calculator.test
         {
             //5-2+5*7*2+12-2*3.5=3+70+12-7=
             Calculator _calc = new Calculator();
-            var result = _calc.Solve("5-2+5*7*2+12-2*3.5");
+            var result = _calc.Calculate("5-2+5*7*2+12-2*3.5");
             Assert.AreEqual("78", result);
         }
 
@@ -48,7 +48,7 @@ namespace calculator.test
         public void Test3()
         {
             Calculator _calc = new Calculator();
-            var t = _calc.Solve("1+2+3*2.9/4.6+12+2");
+            var t = _calc.Calculate("1+2+3*2.9/4.6+12+2");
 
             Assert.Pass();
         }
