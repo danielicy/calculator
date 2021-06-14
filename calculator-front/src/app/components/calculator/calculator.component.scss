@@ -10,6 +10,7 @@
   border-radius: 5%;
   border: double black 2px;
   padding: 0.5em;
+  float: right;
 }
 .c-button {
   margin: 0.1em;
@@ -37,4 +38,14 @@
 .display {
   width: 100%;
   margin: 1em 0.05em;
+}
+.history {
+  float: right;
+  position: absolute;
+  top: 25%;
+  left: 70%;
+}
+
+.frame {
+  width: 80%;
 }

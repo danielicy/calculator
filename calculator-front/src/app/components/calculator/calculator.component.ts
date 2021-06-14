@@ -1,6 +1,7 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ApiHttpService } from 'src/app/core/services/api/api-http.service';
+import { LocalStorageService } from 'src/app/core/services/storage/storage.service';
 
 @Component({
   selector: 'calculator',
@@ -15,7 +16,8 @@ export class CalculatorComponent implements OnDestroy {
 
   constructor(
     // Angular Modules
-    private api: ApiHttpService
+    private api: ApiHttpService,
+    private storage: LocalStorageService
   ) { }
   ngOnDestroy(): void {
     throw new Error('Method not implemented.');
@@ -54,8 +56,15 @@ export class CalculatorComponent implements OnDestroy {
   .replace(/\+/g, '%2B') .replace(/x/g, '*'))
    .subscribe(result => {
     this.expression = this.expression.concat('=', result as any);
+    
+    this.storage.setItem('calc' + this.storage.length , this.expression);
 
    });
+ }
+
+ get allCalculations(){
+   let items =  this.storage.allItems();
+   return items;
  }
 
 

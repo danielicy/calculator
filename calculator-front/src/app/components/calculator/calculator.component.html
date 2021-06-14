@@ -1,10 +1,16 @@
- 
+ <div class="frame">
     <div class="calculator">
         <input type="text" class="display"  value="{{expression}}{{total}}"><br/>
        <div class="buttons">
         <calc-button (click)="click(id)" class="c-button"
         *ngFor="let id of buttons" 
         [id]="id">{{id}}</calc-button>
-       </div>        
+       </div>            
     </div> 
+    <ul class="history">
+        <h3>History</h3>
+        <li  *ngFor="let calc of allCalculations">{{calc}}</li>
+    </ul>  
+</div>
+     
  
