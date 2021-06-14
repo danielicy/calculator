@@ -28,11 +28,12 @@ namespace calculator.api
         }
 
         [HttpGet]        
-        public IActionResult Calculate(JToken expression)
+        public IActionResult Calculate(string expression)
         {
             try
-            {               
-                string result = _calculator.Calculate(expression.Value<string>("expression"));
+            {
+
+                string result = _calculator.Calculate(expression);
                      
                  return Ok(result);
 
