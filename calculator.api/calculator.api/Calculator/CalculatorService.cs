@@ -12,26 +12,11 @@ namespace calculator.api
         {
             Calculator calculator = new Calculator();
 
-            string result = calculator.Calculate(expression).ToString();
-
-            return ParseResult(result);
+            return calculator.Calculate(expression).ToString();            
             
         }
 
-        private string ParseResult(string result)
-        {
-            if (result.Contains("."))
-            {
-                var splitted = result.Split('.');
-                var dec= int.Parse(splitted[1]);
-                if (dec == 0)
-                    return splitted[0];
 
-                return result;
-            }               
-            else
-                return result;
-        }
     }
 
    

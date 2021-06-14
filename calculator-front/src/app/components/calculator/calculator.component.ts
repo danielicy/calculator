@@ -46,13 +46,12 @@ export class CalculatorComponent implements OnDestroy {
 
  click(id: string): void{
    this.handleClick(id);
-   console.log(this.expression);
  }
 
  calculate(): void{
 
   this.api.get('calculator?expression=' + this.expression
-  .replace('+', '%2B') .replace('x', '*'))
+  .replace(/\+/g, '%2B') .replace(/x/g, '*'))
    .subscribe(result => {
     this.expression = this.expression.concat('=', result as any);
 
