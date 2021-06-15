@@ -12,11 +12,7 @@ namespace calculator.api
     [ApiController]
     [Route("[controller]")]
     public class CalculatorController : ControllerBase
-    {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+    { 
 
         private readonly ILogger<CalculatorController> _logger;
         private readonly ICalculate _calculator;
@@ -32,6 +28,8 @@ namespace calculator.api
         {
             try
             {
+                if (string.IsNullOrEmpty(expression))
+                    throw new NullReferenceException("expression is empty");
 
                 string result = _calculator.Calculate(expression);
                      
@@ -40,6 +38,7 @@ namespace calculator.api
             }
             catch(Exception ex)
             {
+                _logger.LogError(ex.Message);
                 return BadRequest(ex);
             }
             

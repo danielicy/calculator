@@ -15,6 +15,7 @@ export class LocalStorageService {
         i = keys.length;
 
     while ( i-- ) {
+      if(keys[i] !='user')
         values.push( localStorage.getItem(keys[i]) );
     }
 
