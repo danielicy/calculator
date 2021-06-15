@@ -13,6 +13,7 @@ export class CalculatorComponent implements OnDestroy {
   total = '';
   expression = '';
   subscription: any;
+  isCalculated = false;
 
   constructor(
     // Angular Modules
@@ -47,6 +48,10 @@ export class CalculatorComponent implements OnDestroy {
   }
 
  click(id: string): void{
+   if(this.isCalculated){
+     this.expression = '';
+     this.isCalculated = false;
+   }
    this.handleClick(id);
  }
 
@@ -56,8 +61,8 @@ export class CalculatorComponent implements OnDestroy {
   .replace(/\+/g, '%2B') .replace(/x/g, '*'))
    .subscribe(result => {
     this.expression = this.expression.concat('=', result as any);
-    
     this.storage.setItem('calc' + this.storage.length , this.expression);
+    this.isCalculated  = true;
 
    });
  }

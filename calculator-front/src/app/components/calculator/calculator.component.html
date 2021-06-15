@@ -1,6 +1,6 @@
  <div class="frame">
     <div class="calculator">
-        <input type="text" class="display"  value="{{expression}}{{total}}"><br/>
+        <input disabled="true" type="text" class="display"  value="{{expression}}{{total}}"><br/>
        <div class="buttons">
         <calc-button (click)="click(id)" class="c-button"
         *ngFor="let id of buttons" 
@@ -8,8 +8,8 @@
        </div>            
     </div> 
     <ul class="history">
-        <h3>History</h3>
-        <li  *ngFor="let calc of allCalculations">{{calc}}</li>
+        <h2>History</h2>
+        <li  *ngFor="let calc of allCalculations"><a href="https://github.com/danielicy/">{{calc}}</a></li>
     </ul>  
 </div>
      
