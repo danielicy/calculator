@@ -36,7 +36,7 @@ export class CalculatorComponent implements OnDestroy {
         alert('Not implemented yet');
         break;
       case '@':
-        alert('There is a theory which states that if ever anyone discovers exactly what the Universe is for and why it is here, it will instantly disappear and be replaced by something even more bizarre and inexplicable');
+        alert('There is a theory which states that if ever anyone discovers exactly what the Universe is for and why it is here, it will instantly disappear and be replaced by something even more bizarre and inexplicable\n "Douglas Adams"');
         break;
       case '=':
         this.calculate();
