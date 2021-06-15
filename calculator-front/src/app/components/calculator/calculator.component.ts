@@ -48,7 +48,7 @@ export class CalculatorComponent implements OnDestroy {
   }
 
  click(id: string): void{
-   if(this.isCalculated){
+   if (this.isCalculated){
      this.expression = '';
      this.isCalculated = false;
    }
@@ -68,8 +68,12 @@ export class CalculatorComponent implements OnDestroy {
  }
 
  get allCalculations(){
-   let items =  this.storage.allItems();
+   const items =  this.storage.allItems();
    return items;
+ }
+
+ get name(){
+   return this.storage.getItem('user');
  }
 
 
