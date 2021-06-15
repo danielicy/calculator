@@ -49,7 +49,7 @@ namespace calculator.test
             Calculator _calc = new Calculator();
             var result = _calc.Calculate("1+2+3*2.9/4.6+12+2 ");
            var parsedResulr = string.Format("{0:N6}", result);
-            Assert.AreEqual(18.891304, parsedResulr);
+            Assert.AreEqual("18.891304", parsedResulr);
         }
 
         [Test]
@@ -59,6 +59,15 @@ namespace calculator.test
             Calculator _calc = new Calculator();
             var result = _calc.Calculate("5-2*5*7+2+12-2*3.5");
             Assert.AreEqual(-58, result);
+        }
+
+        [Test]
+        public void NegativeResult1()
+        {
+            //5-2*5*7+2+12-2*3.5=5-70+14-7
+            Calculator _calc = new Calculator();
+            var result = _calc.Calculate("81-20-36-10*8");
+            Assert.AreEqual(-55, result);
         }
 
 
@@ -73,15 +82,6 @@ namespace calculator.test
             Assert.AreEqual("45.666667", parsedResulr);
         }
 
-
-
-        [Test]
-        public void Test3()
-        {
-            Calculator _calc = new Calculator();
-            var t = _calc.Calculate("1+2+3*2.9/4.6+12+2");
-
-            Assert.Pass();
-        }
+ 
     }
 }

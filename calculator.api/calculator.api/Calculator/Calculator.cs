@@ -21,22 +21,20 @@ namespace calculator.api
 
             public double Calculate(string expression)
             {
-                // Remove all spaces
-                expression = Regex.Replace(expression, @"\s+", "");
+                // Remove all spaces                
+            expression = Regex.Replace(expression, @"\s+", "");
 
-           
             return Solve(expression);
-            }
+        }
 
         private double Solve(string expression)
-        {
-            //1+8+7*4/2+5*2.5 = 9 + 14 + 12.5
+        {  
 
-            string buffer = "";
-           
+            string buffer = "";           
             Queue<string> results = new Queue<string>();
             Stack<char> operators = new Stack<char>();
             Stack<double> tempStack = new Stack<double>();
+            bool isPreviousMinus = false;
 
             foreach (char c in expression)
             {
@@ -44,27 +42,37 @@ namespace calculator.api
                     buffer += c;
                 else if ("+-*/".Contains(c))
                 {
+                    if (isPreviousMinus)
+                    {
+                        buffer =  "-" + buffer;                         
+                    }
+
                     results.Enqueue(buffer);
                     buffer = "";
+                    isPreviousMinus = c == '-';
+
+                    //this is required to inject substaction operations into the operand
+                    char oper = c;
+                    if (isPreviousMinus)
+                        oper = '+';
 
                     if (operators.Count == 0)
-                        operators.Push(c);
+                        operators.Push(oper);
                     else if (operatorPresedence[c] > operatorPresedence[operators.Peek()])
                     {
-                        operators.Push(c);
+                        operators.Push(oper);
                     }
                     else if (operatorPresedence[c] == operatorPresedence[operators.Peek()])
                     {
                         results.Enqueue(operators.Pop().ToString());
-                        operators.Push(c);
+                        operators.Push(oper);
                     }
                     else if (operatorPresedence[c] < operatorPresedence[operators.Peek()])
                     {
                         results.Enqueue(operators.Pop().ToString());
+                        orderOperator(oper, ref operators);             
 
-                        operators.Push(c);
                     }
-
                 }
                 else
                     throw new Exception("Invalid character in string");
@@ -93,6 +101,22 @@ namespace calculator.api
             }
 
             return tempStack.Pop();
+        }
+
+        private void orderOperator(char c, ref Stack<char> operators)
+        {
+            if (operators.Count==0 || operatorPresedence[c] == operatorPresedence[operators.Peek()] ||
+                operatorPresedence[c] > operatorPresedence[operators.Peek()])
+                operators.Push(c);
+            else
+            {
+               var t =  operators.Pop();
+                operators.Push(c);
+                operators.Push(t);
+            }
+
+
+
         }
 
         private double operation(double v1, double v2, string op)

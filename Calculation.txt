@@ -1,0 +1,31 @@
+Calculation algorithm:
+based on shunting Yard Algo
+
+steps:
+1. convert expression to postfix expression e.g order operators and operand in presedence order:
+	
+    a. Parse the expression from left to right.
+    If we see an operand, output it to the results queue immediately.
+
+    If we see an operator:
+
+    b. If the operator stack is empty, push the incoming operator onto the operator stack.
+
+    c. If the incoming operator has higher precedence than what’s currently at top of the operator stack, push the incoming operator onto the top of the stack.
+
+    d. If the incoming operator has equal precendence, pop the top operator from the stack, output it to the queue, and push the incoming operator onto the stack.
+
+    e. If the incoming operator has lower precedence pop the top operator from the stack, output it to the queue, and test the incoming operator with the new top of the stack.
+
+    Once we have parsed the whole expression, pop all remaining tokens from the operator stack.
+
+2. use stack and queue to pop all items and evaluate values:
+
+    a. Start with an empty stack.
+
+    b. Parse the first token in the expression.
+    c. If it’s an operand, push it onto the stack.
+    d. If it’s an operator, pop off the appropriate number of operands from the stack into temporary 	variables. (For example, multiplication is a binary operator, so if you are parsing and you hit a 	multiplication operator, then you know to pop off two operands.)
+    e. Evaluate that expression using the current operator and the two operands that were popped.
+    f. Push that result to the top of the stack.
+    g. Repeat 2-7 until the expression is empty.
